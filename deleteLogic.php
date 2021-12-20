@@ -1,0 +1,66 @@
+<?php
+
+$database = new mysqli("localhost","timohh97_admin1","449060data","timohh97_phpdata");
+
+    $flag = false;
+
+    $usernameFromInput = $_POST["username"];
+    $passwordFromInput = $_POST["password"];
+
+
+    $queryForUsernameCheck = "SELECT username FROM messenger";
+
+    $usernameColumn = mysqli_query($database,$queryForUsernameCheck);
+
+    $usernameArray = Array();
+
+    while($result = $usernameColumn->fetch_assoc())
+    {
+       $usernameArray[] = $result['username'];
+    }
+
+    foreach ($usernameArray as $element) {
+
+       if($element==$usernameFromInput)
+       {
+         $flag= true;
+       }
+    }
+
+
+    if($flag){
+    $queryForRow = "SELECT * FROM messenger WHERE username='$usernameFromInput'";
+    $row = mysqli_query($database,$queryForRow);
+    $rowArray = mysqli_fetch_array($row);
+
+    if(password_verify($passwordFromInput,$rowArray[2])==true)
+    {
+       $query = "DELETE FROM messenger WHERE username='$usernameFromInput'";
+        $database->query($query);
+      
+      echo "<script> alert('Delete request successful!') </script>";
+           echo "<script> window.location = 'https://www.message.timoschessl.com/delete.php'</script>";
+    }
+    else {
+          echo "<script> alert('Wrong password!') </script>";
+           echo "<script> window.location = 'https://www.message.timoschessl.com/delete.php'</script>";
+    }
+}
+else {
+    echo "<script> alert('This username doesnt exist!') </script>";
+           echo "<script> window.location = 'https://www.message.timoschessl.com/delete.php'</script>";
+}
+
+
+?>
+    
+  
+     
+
+     
+     
+          
+    
+    
+    
+ 

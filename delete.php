@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="main.css">
-    <title>Login</title>
+    <title>Delete account</title>
   </head>
   <body>
       <div id="container">
-    <h2>Login</h2>
-    <form action="loginLogic.php" method="post">
+    <h2>Delete my account</h2>
+    <form action="deleteLogic.php" method="post">
       <input type="text" name="username" placeholder="Username" required><br>
       <br>
       <input type="password" name="password" placeholder="Password" required minlength="6"><br>
       <br>
-      <button type="submit" name="submit">Login</button>
+      <button type="submit" name="submit">Delete</button>
     </form>
     <br>
     <a href="register.php">Create a new account</a>
     <br>
     <br>
-    <a href="delete.php">Delete my account</a>
+    <a href="index.html">Login</a>
     </div>
   </body>
 </html>
